@@ -27,7 +27,8 @@
     "licenses": "node scripts/generate-notices.mjs",
     "prebuild": "npm run licenses",
     "assets:check": "node scripts/validate-assets.mjs",
-    "lint:architecture": "node scripts/check-architecture.mjs"
+    "lint:architecture": "node scripts/check-architecture.mjs",
+    "version:bump": "node scripts/bump-version.mjs"
   },
   "dependencies": {
     "classnames": "^2.5.1",

@@ -90,12 +90,13 @@ npm run check           # lint, no-comments check, types and unit tests
 npx playwright install chromium
 npm run test:browser    # real unpacked extension in Chromium
 npm run package         # check, build, validate and create release ZIP + SHA-256
+npm run version:bump    # bump patch version in package, lockfile and manifest
 npm run assets          # regenerate PNG icons from the SVG master
 npm run promo           # capture the extension and regenerate store/social images
 npm run format:check
 ```
 
-`npm run build` never changes the version. For a release, use `npm version patch --no-git-tag-version` (or `minor` / `major`); its version hook synchronizes the manifest and npm updates the lockfile. See the [release guide](docs/RELEASING.md) before tagging or publishing.
+`npm run build` never changes the version. For a release, use `npm run version:bump` (or append `-- minor` / `-- major`), commit the version changes and push to `main`. GitHub Actions creates the tag and release with the ZIP and SHA-256. See the [release guide](docs/RELEASING.md) before tagging or publishing.
 
 | Directory      | Responsibility                                                              |
 | -------------- | --------------------------------------------------------------------------- |

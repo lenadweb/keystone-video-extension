@@ -1,14 +1,20 @@
 # Release guide
 
-The source and store preparation are local. Uploading a ZIP, making a repository public, publishing a privacy URL and submitting a store listing are separate maintainer actions.
+GitHub Releases are created automatically by `.github/workflows/release.yml`. Chrome Web Store submission remains a separate maintainer action.
 
 ## Prepare
 
 1. Start from a clean checkout with Node.js 22.12+ and npm 10. Run `npm ci`.
-2. For a new version, update `CHANGELOG.md`, then use `npm version patch --no-git-tag-version` (or `minor` / `major`). npm updates the lockfile; the version hook updates `public/manifest.json`. Review and commit the package, lockfile, manifest and changelog together, then create the release tag. The flag prevents npm from creating a commit or tag for you. Do not bump merely to rebuild an existing version.
+2. For a new version, update `CHANGELOG.md`, then run `npm run version:bump`. This increases the patch version and synchronizes `package.json`, `package-lock.json` and `public/manifest.json`. Use `npm run version:bump -- minor` or `-- major` for larger changes. The command does not create a commit or tag. Review and commit the changed files together. Do not bump merely to rebuild an existing version.
 3. Run `npx playwright install chromium`, `npm run package`, `npx playwright test` and `npm run format:check`.
 4. Inspect `release/keystone-<version>-chrome.zip` and its SHA-256 file. The ZIP has `manifest.json` at its root, includes license notices and excludes development files and source maps. Repackaging an unchanged `dist/` produces the same archive bytes.
 5. If visible behavior or branding changed, run `npm run assets` and `npm run promo`, review every image and commit the updated assets. Promo capture requires the Playwright browser or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`.
+
+## Automatic GitHub release
+
+Push the version commit to `main`. A change to `public/manifest.json` starts the Release workflow. It reads the manifest version, skips an existing `v<version>` release, installs dependencies, runs `npm run package` and creates the GitHub release with the ZIP, SHA-256 file and generated notes. The tag points to the commit being built.
+
+You can also choose **Actions → Release → Run workflow** to create a missing release manually. No personal access token is needed; the workflow uses `GITHUB_TOKEN` with `contents: write`. The existing CI workflow remains separate.
 
 ## Manual playback checks
 
