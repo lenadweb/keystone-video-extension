@@ -53,3 +53,13 @@ await inspect('dist');
 console.log(
     `Validated Keystone ${pkg.version}: manifest, assets, licenses and production files.`
 );
+
+const listing = await json('store/metadata.json');
+assert.equal(listing.name, messages.appName.message);
+assert.equal(listing.summary, messages.appDescription.message);
+const description = await readFile('store/description.md', 'utf8');
+assert.ok(description.includes(`## Name\n\n${listing.name}\n`));
+assert.ok(description.includes(`## Summary\n\n${listing.summary}\n`));
+const lock = await json('package-lock.json');
+assert.equal(lock.version, pkg.version);
+assert.equal(lock.packages[''].version, pkg.version);

@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible problem with video correction.
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include a public example if possible. Do not share private video frames or credentials.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Extension version, Chrome version and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: player
+    attributes:
+      label: Player details
+      description: Note if the video is embedded, fullscreen or in picture-in-picture.

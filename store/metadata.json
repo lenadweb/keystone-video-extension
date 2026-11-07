@@ -1,0 +1,11 @@
+{
+  "name": "Keystone - Projector Video Correction",
+  "summary": "Square up browser videos for your projector with vertical and horizontal perspective correction, fine controls and shortcuts.",
+  "language": "en",
+  "category": "Tools",
+  "website": "https://github.com/lenadweb/keystone-video-extension",
+  "support": "https://github.com/lenadweb/keystone-video-extension/issues",
+  "privacyPolicy": "https://github.com/lenadweb/keystone-video-extension/blob/main/PRIVACY.md",
+  "storeUrl": null,
+  "extensionId": null
+}
