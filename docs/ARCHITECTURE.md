@@ -76,7 +76,7 @@ Disposal disconnects observers and listeners, cancels timers, restores video sty
 
 ## Popup and frame injection
 
-Hooks connect React state to services; components receive typed props and render the existing approved UI. Pure view helpers accept translation functions or other runtime choices as arguments.
+Hooks connect React state to services; components receive typed props and render the existing approved UI. Pure view helpers receive aspect ratios, slider values and captured frame data as explicit inputs. Page availability is used internally for preview loading; video counts and support-status labels are not rendered.
 
 `popup/services/scripting.ts` implements the all-frames request with top-frame fallback. Counting and snapshot services reuse that policy. `popup/injected/countVideos.ts` and `captureVideo.ts` contain the functions passed to `chrome.scripting.executeScript`.
 

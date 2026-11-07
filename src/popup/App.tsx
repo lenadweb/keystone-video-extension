@@ -26,7 +26,6 @@ const App: FC = () => {
         <main className="flex min-h-[480px] w-[360px] flex-col bg-background p-3 pt-5 text-white">
             <Header
                 isEnabled={settings.enabled}
-                status={pageStatus}
                 toggleShortcut={shortcuts[Command.Toggle]}
                 onToggle={() => update({ enabled: !settings.enabled })}
             />

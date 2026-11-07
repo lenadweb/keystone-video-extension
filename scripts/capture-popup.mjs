@@ -50,9 +50,8 @@ export const capturePopup = async (context, worker, page) => {
                 await document.fonts.ready;
                 for (let attempt = 0; attempt < 50; attempt += 1) {
                     const main = document.querySelector('main');
-                    const status = document.querySelector('[role="status"]');
                     const image = document.querySelector('main img');
-                    if (main && status?.textContent.includes('video') && image?.complete && image.naturalWidth > 0) {
+                    if (main && image?.complete && image.naturalWidth > 0) {
                         await new Promise(resolve => setTimeout(resolve, 350));
                         return { width: main.offsetWidth, height: main.offsetHeight, viewport: innerHeight };
                     }

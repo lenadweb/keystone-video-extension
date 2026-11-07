@@ -2,7 +2,6 @@ import cn from 'classnames';
 import { Keyboard } from 'lucide-react';
 import type { FC } from 'react';
 import type { HeaderProps } from 'src/popup/types/header';
-import { getStatusDotClass, getStatusLabel } from 'src/popup/utils/pageStatus';
 import { t } from 'src/shared/services/i18n';
 import { openShortcutsPage } from 'src/shared/services/tabs';
 
@@ -10,15 +9,9 @@ import Logo from 'src/assets/icons/logo.svg?react';
 import IconButton from 'src/popup/components/IconButton';
 import Switch from 'src/popup/components/Switch';
 import Tooltip from 'src/popup/components/Tooltip';
-import { PageStatusKind } from 'src/popup/enums/pageStatus';
 import { TooltipAlign, TooltipPlacement } from 'src/popup/enums/tooltip';
 
-const Header: FC<HeaderProps> = ({
-    isEnabled,
-    status,
-    toggleShortcut,
-    onToggle,
-}) => {
+const Header: FC<HeaderProps> = ({ isEnabled, toggleShortcut, onToggle }) => {
     const toggleLabel = t(
         isEnabled ? 'disable_correction' : 'enable_correction'
     );
@@ -37,29 +30,6 @@ const Header: FC<HeaderProps> = ({
                     <h1 className="text-[20px] font-medium leading-tight">
                         {t('app_title')}
                     </h1>
-                    <div
-                        className="flex min-w-0 items-center gap-1.5"
-                        title={
-                            status.kind === PageStatusKind.Unavailable
-                                ? t('page_unavailable_hint')
-                                : undefined
-                        }
-                    >
-                        <span
-                            aria-hidden
-                            className={cn(
-                                'size-1.5 shrink-0 rounded-full',
-                                getStatusDotClass(status, isEnabled)
-                            )}
-                        />
-                        <span
-                            role="status"
-                            aria-live="polite"
-                            className="truncate text-[12px] leading-4 text-black-400"
-                        >
-                            {getStatusLabel(status, t)}
-                        </span>
-                    </div>
                 </div>
             </div>
 

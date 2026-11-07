@@ -17,30 +17,6 @@
   "disable_correction": {
     "message": "Turn correction off"
   },
-  "checking_page": {
-    "message": "Looking for video\u2026"
-  },
-  "video_found": {
-    "message": "1 video"
-  },
-  "videos_found": {
-    "message": "$COUNT$ videos",
-    "placeholders": {
-      "count": {
-        "content": "$1",
-        "example": "2"
-      }
-    }
-  },
-  "no_videos": {
-    "message": "No video"
-  },
-  "page_unavailable": {
-    "message": "Page not supported"
-  },
-  "page_unavailable_hint": {
-    "message": "Chrome doesn't allow changes on built-in and store pages."
-  },
   "vertical": {
     "message": "Vertical"
   },

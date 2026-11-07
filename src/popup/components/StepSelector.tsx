@@ -27,7 +27,7 @@ const StepSelector: FC<StepSelectorProps> = ({ value, onChange }) => {
                             onChange={() => onChange(step)}
                             className="peer sr-only"
                         />
-                        <span className="flex h-9 min-w-14 items-center justify-center rounded-md bg-black-600 px-3 text-[13px] font-medium tabular-nums text-black-200 transition-all duration-200 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-black-500 peer-checked:rounded-full peer-checked:bg-blue-accent peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-light [label:first-child_&]:rounded-l-full [label:last-child_&]:rounded-r-full">
+                        <span className="flex h-9 min-w-14 items-center justify-center rounded-md bg-black-600 px-3 text-[13px] font-medium tabular-nums text-black-200 transition-all duration-200 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-black-500 peer-checked:rounded-[18px] peer-checked:bg-blue-accent peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-light [label:first-child_&]:rounded-l-[18px] [label:last-child_&]:rounded-r-[18px]">
                             {formatPercent(step)}
                         </span>
                     </label>
