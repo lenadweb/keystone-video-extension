@@ -51,13 +51,13 @@ The displayed tilt is an estimate for a **1.2:1 throw ratio and 16:9 image**, no
 
 ### Keyboard shortcuts
 
-| Action              | macOS             | Windows / Linux  |
-| ------------------- | ----------------- | ---------------- |
-| Narrow top          | Option+Shift+Up   | Alt+Shift+Up     |
-| Narrow bottom       | Option+Shift+Down | Alt+Shift+Down   |
-| Reset both axes     | Option+Shift+0    | Alt+Shift+0      |
-| Toggle correction   | Command+Shift+K   | Ctrl+Shift+K     |
-| Narrow left / right | Assign in Chrome  | Assign in Chrome |
+| Action              | macOS            | Windows / Linux  |
+| ------------------- | ---------------- | ---------------- |
+| Narrow top          | Command+Shift+,  | Alt+Shift+Up     |
+| Narrow bottom       | Command+Shift+.  | Alt+Shift+Down   |
+| Reset both axes     | Option+Shift+0   | Alt+Shift+0      |
+| Toggle correction   | Command+Shift+K  | Ctrl+Shift+K     |
+| Narrow left / right | Assign in Chrome | Assign in Chrome |
 
 Customize bindings at `chrome://extensions/shortcuts`, also reachable from the keyboard button in the popup. Chrome permits only four suggested shortcuts and can leave conflicting bindings unassigned. Shortcuts show a brief on-screen readout and can work in container-based fullscreen players.
 
