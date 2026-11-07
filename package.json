@@ -1,6 +1,6 @@
 {
   "name": "keystone-video-extension",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Perspective correction for browser videos, built for projector setups.",
   "license": "MIT",
   "private": true,
