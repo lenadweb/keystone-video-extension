@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Keystone for projectors</title>
+        <style>
+            @font-face {
+                font-family: Manrope;
+                src: url('{{FONT}}') format('truetype');
+                font-weight: 100 900;
+                font-style: normal;
+                font-display: block;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family: Manrope, sans-serif;
+                background: #dce5ff;
+                color: #172554;
+            }
+            .poster {
+                position: relative;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+            }
+            .brand {
+                position: absolute;
+                top: 80px;
+                left: 80px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                font-size: 28px;
+                font-weight: 650;
+                letter-spacing: -0.8px;
+            }
+            .brand img {
+                width: 44px;
+                height: 44px;
+            }
+            .copy {
+                position: absolute;
+                left: 80px;
+                top: 242px;
+                width: 650px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 60px;
+                font-weight: 650;
+                letter-spacing: -2.8px;
+                line-height: 1.15;
+            }
+            h1 span,
+            .description span {
+                display: block;
+            }
+            .description {
+                margin: 30px 0 0;
+                color: #3a507e;
+                font-size: 21px;
+                font-weight: 450;
+                line-height: 1.6;
+                letter-spacing: -0.25px;
+            }
+            .details {
+                position: absolute;
+                left: 82px;
+                bottom: 92px;
+                margin: 0;
+                font-size: 17px;
+                font-weight: 500;
+                color: #3a507e;
+                letter-spacing: -0.1px;
+            }
+            .interface {
+                position: absolute;
+                top: 80px;
+                right: 80px;
+                width: 380px;
+                height: auto;
+                border-radius: 24px;
+                box-shadow: 0 18px 40px -24px rgb(23 37 84 / 40%);
+            }
+            .small-copy {
+                display: none;
+            }
+            [data-format='marquee'] .brand {
+                top: 52px;
+            }
+            [data-format='marquee'] .copy {
+                top: 171px;
+                width: 790px;
+            }
+            [data-format='marquee'] h1 {
+                font-size: 62px;
+            }
+            [data-format='marquee'] .description {
+                margin-top: 24px;
+            }
+            [data-format='marquee'] .details {
+                bottom: 52px;
+            }
+            [data-format='marquee'] .interface {
+                width: 296px;
+                top: 36px;
+                right: 80px;
+                border-radius: 20px;
+            }
+            [data-format='social'] .brand {
+                top: 56px;
+            }
+            [data-format='social'] .copy {
+                top: 190px;
+                width: 650px;
+            }
+            [data-format='social'] h1 {
+                font-size: 56px;
+            }
+            [data-format='social'] .description {
+                margin-top: 28px;
+                font-size: 20px;
+            }
+            [data-format='social'] .details {
+                bottom: 60px;
+            }
+            [data-format='social'] .interface {
+                top: 48px;
+                width: 330px;
+                border-radius: 22px;
+            }
+            [data-format='small'] .brand {
+                top: 26px;
+                left: 24px;
+                gap: 8px;
+                font-size: 17px;
+                letter-spacing: -0.4px;
+            }
+            [data-format='small'] .brand img {
+                width: 26px;
+                height: 26px;
+            }
+            [data-format='small'] .copy {
+                top: 89px;
+                left: 24px;
+                width: 230px;
+            }
+            [data-format='small'] h1 {
+                font-size: 23px;
+                letter-spacing: -0.8px;
+                line-height: 1.22;
+            }
+            [data-format='small'] .description {
+                margin-top: 18px;
+                font-size: 13px;
+                line-height: 1.55;
+                letter-spacing: -0.1px;
+            }
+            [data-format='small'] .full-copy,
+            [data-format='small'] .details {
+                display: none;
+            }
+            [data-format='small'] .small-copy {
+                display: block;
+            }
+            [data-format='small'] .interface {
+                top: 24px;
+                right: 18px;
+                width: 142px;
+                border-radius: 10px;
+                box-shadow: 0 10px 24px -16px rgb(23 37 84 / 40%);
+            }
+        </style>
+    </head>
+    <body>
+        <main class="poster" data-format="{{FORMAT}}">
+            <div class="brand"><img src="{{LOGO}}" alt="" />Keystone</div>
+            <div class="copy">
+                <h1>
+                    <span>Keystone correction</span>
+                    <span>for your projector.</span>
+                </h1>
+                <p class="description full-copy">
+                    <span
+                        >Square up browser videos for an off-center
+                        projector.</span
+                    >
+                    <span
+                        >Adjust both axes while your video keeps playing.</span
+                    >
+                </p>
+                <p class="description small-copy">
+                    <span>Square up videos</span>
+                    <span>right in Chrome.</span>
+                </p>
+            </div>
+            <p class="details">
+                Keyboard shortcuts · Local settings · No account
+            </p>
+            <img
+                class="interface"
+                src="{{POPUP}}"
+                alt="Actual Keystone interface"
+            />
+        </main>
+    </body>
+</html>

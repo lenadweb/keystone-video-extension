@@ -8,4 +8,4 @@ The source of truth is `src/assets/icons/logo.svg`. The master uses a 108-unit g
 
 Primary: `#2563EB`. Primary container: `#DCE5FF`. Foreground: `#F2F5FF`. Ink: `#172554`. Promotional backgrounds use `#101D3B` and `#DCE5FF`. Flat tones, no gradients or drop shadows in the mark.
 
-Store screenshots use the real built extension on an original illustrated video fixture, not third-party films or streaming-service branding. Promotional tiles emphasize the logo and the transformation diagram. Sources and export instructions live in `store/README.md`.
+The store uses one main composition: projector-focused copy on the left and a large screenshot of the actual popup on the right. Small, marquee and social images repeat that structure, shortening the copy where necessary. Use the existing tonal blue background and Manrope. Show the whole popup; do not add a fabricated browser or player around it. The thumbnail inside the popup comes from the original local video fixture. Sources and export instructions live in `store/README.md`, and the editable composition is `store/promo/template.html`.

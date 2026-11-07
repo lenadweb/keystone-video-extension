@@ -1,27 +1,15 @@
+import { access } from 'node:fs/promises';
+import { PROMO_FORMATS, OBSOLETE_PROMO_FILES } from './promo/formats.mjs';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
 
-for (const name of [
-    '01-vertical',
-    '02-horizontal',
-    '03-both-axes',
-    '04-fine-control',
-    '05-toggle',
-    'promo-small',
-    'promo-marquee',
-    'social-1280x640',
-]) {
-    const expected =
-        name === 'promo-small'
-            ? [440, 280]
-            : name === 'promo-marquee'
-              ? [1400, 560]
-              : name === 'social-1280x640'
-                ? [1280, 640]
-                : [1280, 800];
+for (const { name, width, height } of PROMO_FORMATS) {
     const metadata = await sharp(`store/assets/${name}.png`).metadata();
-    assert.deepEqual([metadata.width, metadata.height], expected, name);
+    assert.deepEqual([metadata.width, metadata.height], [width, height], name);
     assert.equal(metadata.hasAlpha, false, `${name}: use an opaque PNG`);
+}
+for (const path of OBSOLETE_PROMO_FILES) {
+    await assert.rejects(access(path), { code: 'ENOENT' });
 }
 for (const size of [16, 32, 48, 128]) {
     const { info, data } = await sharp(`public/icons/${size}.png`)

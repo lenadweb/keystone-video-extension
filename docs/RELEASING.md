@@ -24,7 +24,7 @@ Keep secrets, private recordings and local release archives out of Git. The sour
 
 - Upload the validated ZIP.
 - Copy the name, summary and detailed description from `store/description.md`.
-- Upload `store/assets/icon-128.png`, the five numbered screenshots and the optional promotional tiles documented in `store/README.md`.
+- Upload `store/assets/icon-128.png`, the single `01-projector.png` screenshot and the optional promotional tiles documented in `store/README.md`.
 - Enter the public repository/support links from `store/metadata.json` after they resolve publicly.
 - Provide a publicly reachable privacy policy. The prepared GitHub URL will work after the repository and `PRIVACY.md` are public; verify it in a signed-out browser.
 - Fill in single-purpose, permissions and data-practices answers using `store/permissions.md`, checking the dashboard's current definitions.

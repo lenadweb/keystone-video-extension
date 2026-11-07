@@ -5,7 +5,7 @@
 <p align="center">Square up your video. Keep your projector where it fits.</p>
 <p align="center">A local-first Chrome extension for vertical and horizontal video perspective correction.</p>
 
-![Keystone correcting a browser video](docs/images/hero.png)
+![Keystone correction for projectors with the actual popup interface](docs/images/hero.png)
 
 A projector sitting below or beside the screen can turn a rectangle into a trapezoid. Keystone lets you compensate in the browser with two sliders, precise steps and keyboard shortcuts, while the video keeps playing.
 
