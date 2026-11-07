@@ -1,0 +1,104 @@
+{
+  "appName": {
+    "message": "Keystone - Projector Video Correction"
+  },
+  "appDescription": {
+    "message": "Square up browser videos for your projector with vertical and horizontal perspective correction, fine controls and shortcuts."
+  },
+  "actionTitle": {
+    "message": "Keystone: adjust video projection"
+  },
+  "app_title": {
+    "message": "Keystone"
+  },
+  "enable_correction": {
+    "message": "Turn correction on"
+  },
+  "disable_correction": {
+    "message": "Turn correction off"
+  },
+  "checking_page": {
+    "message": "Looking for video\u2026"
+  },
+  "video_found": {
+    "message": "1 video"
+  },
+  "videos_found": {
+    "message": "$COUNT$ videos",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "no_videos": {
+    "message": "No video"
+  },
+  "page_unavailable": {
+    "message": "Page not supported"
+  },
+  "page_unavailable_hint": {
+    "message": "Chrome doesn't allow changes on built-in and store pages."
+  },
+  "vertical": {
+    "message": "Vertical"
+  },
+  "horizontal": {
+    "message": "Horizontal"
+  },
+  "top_narrower": {
+    "message": "Top narrower"
+  },
+  "bottom_narrower": {
+    "message": "Bottom narrower"
+  },
+  "left_narrower": {
+    "message": "Left narrower"
+  },
+  "right_narrower": {
+    "message": "Right narrower"
+  },
+  "narrow_top": {
+    "message": "Narrow top"
+  },
+  "narrow_bottom": {
+    "message": "Narrow bottom"
+  },
+  "narrow_left": {
+    "message": "Narrow left"
+  },
+  "narrow_right": {
+    "message": "Narrow right"
+  },
+  "reset_vertical": {
+    "message": "Reset vertical"
+  },
+  "reset_horizontal": {
+    "message": "Reset horizontal"
+  },
+  "no_correction": {
+    "message": "No correction"
+  },
+  "reset_correction": {
+    "message": "Reset"
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "step_size": {
+    "message": "Step"
+  },
+  "view_on_github": {
+    "message": "View on GitHub"
+  },
+  "command_reset": {
+    "message": "Reset correction"
+  },
+  "command_toggle": {
+    "message": "Turn correction on / off"
+  },
+  "shortcuts": {
+    "message": "Shortcuts"
+  }
+}

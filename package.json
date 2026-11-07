@@ -12,6 +12,9 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "lint": "eslint . --max-warnings 0",
+    "lint:comments": "node scripts/check-comments.mjs",
+    "check": "npm run lint && npm run lint:comments && npm run typecheck && npm test",
+    "test": "tsx --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
