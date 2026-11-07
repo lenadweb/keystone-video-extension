@@ -22,8 +22,11 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "assets": "node scripts/generate-assets.mjs",
+    "promo": "npm run build && node scripts/generate-promo.mjs",
     "licenses": "node scripts/generate-notices.mjs",
-    "prebuild": "npm run licenses"
+    "prebuild": "npm run licenses",
+    "assets:check": "node scripts/validate-assets.mjs"
   },
   "dependencies": {
     "classnames": "^2.5.1",
