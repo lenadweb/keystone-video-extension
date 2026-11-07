@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Keystone projection studio</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background: #10141d;
+                color: #f2f5ff;
+                font:
+                    15px system-ui,
+                    sans-serif;
+            }
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 48px;
+                height: 100px;
+                border-bottom: 1px solid #303847;
+            }
+            header strong {
+                font-size: 20px;
+                font-weight: 600;
+            }
+            header span {
+                color: #9faabd;
+            }
+            main {
+                margin: 32px 48px;
+            }
+            #player {
+                background: #080e19;
+                overflow: hidden;
+                width: 808px;
+                height: 454.5px;
+            }
+            video {
+                display: block;
+                width: 808px;
+                height: 454.5px;
+            }
+            footer {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 24px;
+                width: 808px;
+            }
+            footer span {
+                color: #9faabd;
+            }
+            h1 {
+                font-size: 20px;
+                margin: 0 0 8px;
+                font-weight: 500;
+            }
+            p {
+                margin: 0;
+                color: #9faabd;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <strong>Projection studio</strong
+            ><span>Keystone / Local video demo</span>
+        </header>
+        <main>
+            <div id="player">
+                <video
+                    muted
+                    autoplay
+                    playsinline
+                    aria-label="Original illustrated mountain landscape"
+                ></video>
+            </div>
+            <footer>
+                <div>
+                    <h1>Somewhere quiet</h1>
+                    <p>An original landscape, rendered locally.</p>
+                </div>
+                <span>01:24 / 04:00</span>
+            </footer>
+        </main>
+        <script type="module">
+            const canvas = document.createElement('canvas');
+            canvas.width = 1280;
+            canvas.height = 720;
+            const ctx = canvas.getContext('2d');
+            const draw = () => {
+                ctx.fillStyle = '#ccd6eb';
+                ctx.fillRect(0, 0, 1280, 720);
+                ctx.fillStyle = '#f6dfae';
+                ctx.beginPath();
+                ctx.arc(882, 200, 72, 0, Math.PI * 2);
+                ctx.fill();
+                const shape = (color, points) => {
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    points.forEach(([x, y], i) =>
+                        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)
+                    );
+                    ctx.closePath();
+                    ctx.fill();
+                };
+                shape('#93a7c2', [
+                    [0, 420],
+                    [210, 230],
+                    [330, 345],
+                    [570, 148],
+                    [820, 395],
+                    [1030, 282],
+                    [1280, 430],
+                    [1280, 720],
+                    [0, 720],
+                ]);
+                shape('#dae1ea', [
+                    [495, 225],
+                    [570, 148],
+                    [657, 234],
+                    [598, 208],
+                    [565, 235],
+                    [542, 208],
+                ]);
+                shape('#55768d', [
+                    [0, 530],
+                    [240, 348],
+                    [470, 536],
+                    [720, 326],
+                    [1020, 543],
+                    [1280, 400],
+                    [1280, 720],
+                    [0, 720],
+                ]);
+                shape('#2e5369', [
+                    [0, 595],
+                    [270, 490],
+                    [530, 650],
+                    [900, 474],
+                    [1280, 617],
+                    [1280, 720],
+                    [0, 720],
+                ]);
+                shape('#92b4bc', [
+                    [530, 720],
+                    [650, 589],
+                    [776, 598],
+                    [689, 720],
+                ]);
+                shape('#1c3c4c', [
+                    [0, 660],
+                    [220, 590],
+                    [484, 720],
+                    [0, 720],
+                ]);
+                shape('#1c3c4c', [
+                    [793, 720],
+                    [1080, 605],
+                    [1280, 660],
+                    [1280, 720],
+                ]);
+            };
+            draw();
+            const video = document.querySelector('video');
+            video.srcObject = canvas.captureStream(10);
+            await video.play();
+            setInterval(draw, 100);
+        </script>
+    </body>
+</html>

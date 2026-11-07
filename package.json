@@ -18,6 +18,7 @@
     "lint:comments": "node scripts/check-comments.mjs",
     "check": "npm run lint && npm run lint:comments && npm run typecheck && npm test",
     "test": "tsx --test tests/*.test.ts",
+    "test:browser": "npm run build && playwright test",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
