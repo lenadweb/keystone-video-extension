@@ -1,14 +1,11 @@
-import { FC, useId } from 'react';
-import { formatPercent } from 'src/shared/keystone';
-import { STEP_OPTIONS, Step } from 'src/shared/settings';
-import { t } from 'src/shared/i18n';
+import type { FC } from 'react';
+import { useId } from 'react';
+import type { StepSelectorProps } from 'src/popup/types/stepSelector';
+import { STEP_OPTIONS } from 'src/shared/constants/settings';
+import { t } from 'src/shared/services/i18n';
+import { formatPercent } from 'src/shared/utils/percent';
 
-type Props = {
-    value: Step;
-    onChange: (value: Step) => void;
-};
-
-const StepSelector: FC<Props> = ({ value, onChange }) => {
+const StepSelector: FC<StepSelectorProps> = ({ value, onChange }) => {
     const groupName = useId();
 
     return (

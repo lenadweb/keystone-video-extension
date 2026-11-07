@@ -1,31 +1,17 @@
-import { CSSProperties, FC, useState } from 'react';
 import cn from 'classnames';
 import { RotateCcw } from 'lucide-react';
-import { buildMatrix3d } from 'src/shared/keystone';
-import { t } from 'src/shared/i18n';
-import { VideoSnapshot } from 'src/popup/snapshot';
+import type { CSSProperties, FC } from 'react';
+import { useState } from 'react';
+import type { PreviewProps } from 'src/popup/types/preview';
+import { fitFrame } from 'src/popup/utils/preview';
+import { ASPECT_RATIO } from 'src/shared/constants/geometry';
+import { t } from 'src/shared/services/i18n';
+import { buildMatrix3d } from 'src/shared/utils/geometry/matrix';
+
 import IconButton from 'src/popup/components/IconButton';
-import { TooltipAlign } from 'src/popup/components/Tooltip';
+import { TooltipAlign } from 'src/popup/enums/tooltip';
 
-type Props = {
-    vertical: number;
-    horizontal: number;
-    isEnabled: boolean;
-    snapshot: VideoSnapshot | null;
-    shortcut?: string;
-    onReset: () => void;
-};
-
-const BOX_WIDTH = 220;
-const BOX_HEIGHT = 112;
-const DEFAULT_ASPECT = 16 / 9;
-
-const fitFrame = (aspect: number): { width: number; height: number } => {
-    const width = Math.min(BOX_WIDTH, BOX_HEIGHT * aspect);
-    return { width: Math.round(width), height: Math.round(width / aspect) };
-};
-
-const Preview: FC<Props> = ({
+const Preview: FC<PreviewProps> = ({
     vertical,
     horizontal,
     isEnabled,
@@ -35,7 +21,7 @@ const Preview: FC<Props> = ({
 }) => {
     const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
     const isAdjusted = vertical !== 0 || horizontal !== 0;
-    const aspect = snapshot ? snapshot.width / snapshot.height : DEFAULT_ASPECT;
+    const aspect = snapshot ? snapshot.width / snapshot.height : ASPECT_RATIO;
     const frame = fitFrame(aspect);
     const matrix = isEnabled
         ? buildMatrix3d(vertical, horizontal, frame.width, frame.height)

@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { DEFAULT_SETTINGS, normalizeSettings } from '../src/shared/settings';
-import { nextSettings } from '../src/shared/commandSettings';
-import { Command } from '../src/shared/commands';
+import { DEFAULT_SETTINGS } from 'src/shared/constants/settings';
+import { Command } from 'src/shared/enums/command';
+import { nextSettings } from 'src/shared/utils/commandSettings';
+import { normalizeSettings } from 'src/shared/utils/settings';
 
 test('untrusted stored settings use safe defaults and bounded values', () => {
     for (const value of [null, undefined, 'text', []])

@@ -16,7 +16,7 @@
     "version": "node scripts/sync-version.mjs",
     "lint": "eslint . --max-warnings 0",
     "lint:comments": "node scripts/check-comments.mjs",
-    "check": "npm run lint && npm run lint:comments && npm run typecheck && npm test",
+    "check": "npm run lint && npm run lint:comments && npm run lint:architecture && npm run typecheck && npm test",
     "test": "tsx --test tests/*.test.ts",
     "test:browser": "npm run build && playwright test",
     "typecheck": "tsc --noEmit",
@@ -26,7 +26,8 @@
     "promo": "npm run build && node scripts/generate-promo.mjs",
     "licenses": "node scripts/generate-notices.mjs",
     "prebuild": "npm run licenses",
-    "assets:check": "node scripts/validate-assets.mjs"
+    "assets:check": "node scripts/validate-assets.mjs",
+    "lint:architecture": "node scripts/check-architecture.mjs"
   },
   "dependencies": {
     "classnames": "^2.5.1",

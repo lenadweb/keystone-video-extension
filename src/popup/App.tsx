@@ -1,17 +1,18 @@
-import { FC } from 'react';
 import cn from 'classnames';
-import { t } from 'src/shared/i18n';
-import { useKeystoneSettings } from 'src/popup/hooks/useKeystoneSettings';
-import { usePageStatus } from 'src/popup/hooks/usePageStatus';
-import { useShortcuts } from 'src/popup/hooks/useShortcuts';
-import { Command } from 'src/shared/commands';
-import { useVideoSnapshot } from 'src/popup/hooks/useVideoSnapshot';
-import { PageStatusKind } from 'src/popup/pageStatus';
+import type { FC } from 'react';
 import CorrectionAxis from 'src/popup/components/CorrectionAxis';
 import Footer from 'src/popup/components/Footer';
 import Header from 'src/popup/components/Header';
 import Preview from 'src/popup/components/Preview';
 import StepSelector from 'src/popup/components/StepSelector';
+import { PageStatusKind } from 'src/popup/enums/pageStatus';
+import { useKeystoneSettings } from 'src/popup/hooks/useKeystoneSettings';
+import { usePageStatus } from 'src/popup/hooks/usePageStatus';
+import { useShortcuts } from 'src/popup/hooks/useShortcuts';
+import { useVideoSnapshot } from 'src/popup/hooks/useVideoSnapshot';
+import { Axis } from 'src/shared/enums/axis';
+import { Command } from 'src/shared/enums/command';
+import { t } from 'src/shared/services/i18n';
 
 const App: FC = () => {
     const { settings, update, resetCorrection } = useKeystoneSettings();
@@ -48,14 +49,14 @@ const App: FC = () => {
                     )}
                 >
                     <CorrectionAxis
-                        axis="vertical"
+                        axis={Axis.Vertical}
                         value={settings.vertical}
                         step={settings.step}
                         shortcuts={shortcuts}
                         onChange={(vertical) => update({ vertical })}
                     />
                     <CorrectionAxis
-                        axis="horizontal"
+                        axis={Axis.Horizontal}
                         value={settings.horizontal}
                         step={settings.step}
                         shortcuts={shortcuts}

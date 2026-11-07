@@ -1,73 +1,21 @@
-import { FC } from 'react';
 import cn from 'classnames';
-import {
-    LucideIcon,
-    Minus,
-    MoveHorizontal,
-    MoveVertical,
-    Plus,
-} from 'lucide-react';
-import {
-    formatPercent,
-    horizontalTilt,
-    LIMIT,
-    SLIDER_STEP,
-    verticalTilt,
-} from 'src/shared/keystone';
-import { I18nKey, t } from 'src/shared/i18n';
-import { Command, Shortcuts } from 'src/shared/commands';
-import IconButton, { IconButtonTone } from 'src/popup/components/IconButton';
+import { Minus, Plus } from 'lucide-react';
+import type { FC } from 'react';
+import { AXES } from 'src/popup/constants/axes';
+import type { CorrectionAxisProps } from 'src/popup/types/correctionAxis';
+import { LIMIT, SLIDER_STEP } from 'src/shared/constants/geometry';
+import { Axis } from 'src/shared/enums/axis';
+import { t } from 'src/shared/services/i18n';
+import { horizontalTilt, verticalTilt } from 'src/shared/utils/geometry/tilt';
+import { formatPercent } from 'src/shared/utils/percent';
+
+import IconButton from 'src/popup/components/IconButton';
 import Slider from 'src/popup/components/Slider';
-import Tooltip, { TooltipAlign } from 'src/popup/components/Tooltip';
+import Tooltip from 'src/popup/components/Tooltip';
+import { IconButtonTone } from 'src/popup/enums/iconButton';
+import { TooltipAlign } from 'src/popup/enums/tooltip';
 
-export type Axis = 'vertical' | 'horizontal';
-
-type AxisConfig = {
-    title: I18nKey;
-    icon: LucideIcon;
-    positiveLabel: I18nKey;
-    negativeLabel: I18nKey;
-    positiveAction: I18nKey;
-    negativeAction: I18nKey;
-    positiveCommand: Command;
-    negativeCommand: Command;
-    resetLabel: I18nKey;
-};
-
-const AXES: Record<Axis, AxisConfig> = {
-    vertical: {
-        title: 'vertical',
-        icon: MoveVertical,
-        positiveLabel: 'top_narrower',
-        negativeLabel: 'bottom_narrower',
-        positiveAction: 'narrow_top',
-        negativeAction: 'narrow_bottom',
-        positiveCommand: Command.NarrowTop,
-        negativeCommand: Command.NarrowBottom,
-        resetLabel: 'reset_vertical',
-    },
-    horizontal: {
-        title: 'horizontal',
-        icon: MoveHorizontal,
-        positiveLabel: 'right_narrower',
-        negativeLabel: 'left_narrower',
-        positiveAction: 'narrow_right',
-        negativeAction: 'narrow_left',
-        positiveCommand: Command.NarrowRight,
-        negativeCommand: Command.NarrowLeft,
-        resetLabel: 'reset_horizontal',
-    },
-};
-
-type Props = {
-    axis: Axis;
-    value: number;
-    step: number;
-    shortcuts: Shortcuts;
-    onChange: (value: number) => void;
-};
-
-const CorrectionAxis: FC<Props> = ({
+const CorrectionAxis: FC<CorrectionAxisProps> = ({
     axis,
     value,
     step,
@@ -78,7 +26,7 @@ const CorrectionAxis: FC<Props> = ({
     const AxisIcon = config.icon;
     const isAdjusted = value !== 0;
     const tilt =
-        axis === 'vertical' ? verticalTilt(value) : horizontalTilt(value);
+        axis === Axis.Vertical ? verticalTilt(value) : horizontalTilt(value);
     const valueText = isAdjusted
         ? `${formatPercent(value)} ${t(
               value > 0 ? config.positiveLabel : config.negativeLabel

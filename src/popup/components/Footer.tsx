@@ -1,8 +1,7 @@
-import { FC } from 'react';
-import { t } from 'src/shared/i18n';
+import type { FC } from 'react';
 import GithubIcon from 'src/assets/icons/github.svg?react';
-
-const GITHUB_URL = 'https://github.com/lenadweb/keystone-video-extension';
+import { GITHUB_URL } from 'src/shared/constants/links';
+import { t } from 'src/shared/services/i18n';
 
 const Footer: FC = () => (
     <footer className="mt-auto flex items-center justify-around gap-3 pt-7 pb-2">

@@ -1,35 +1,12 @@
-import { FC } from 'react';
 import cn from 'classnames';
-import { LucideIcon } from 'lucide-react';
-import Tooltip, {
-    TooltipAlign,
-    TooltipPlacement,
-} from 'src/popup/components/Tooltip';
+import type { FC } from 'react';
+import { TONE_CLASSES } from 'src/popup/constants/iconButton';
+import { IconButtonTone } from 'src/popup/enums/iconButton';
+import type { IconButtonProps } from 'src/popup/types/iconButton';
 
-export enum IconButtonTone {
-    Standard = 'standard',
-    Tonal = 'tonal',
-}
+import Tooltip from 'src/popup/components/Tooltip';
 
-type Props = {
-    icon: LucideIcon;
-    label: string;
-    shortcut?: string;
-    tone?: IconButtonTone;
-    tooltipPlacement?: TooltipPlacement;
-    tooltipAlign?: TooltipAlign;
-    className?: string;
-    onClick: () => void;
-};
-
-const TONE_CLASSES: Record<IconButtonTone, string> = {
-    [IconButtonTone.Standard]:
-        'text-black-200 hover:bg-white/8 hover:text-white active:bg-white/12',
-    [IconButtonTone.Tonal]:
-        'bg-black-600 text-white-100 hover:bg-black-500 active:bg-black-500',
-};
-
-const IconButton: FC<Props> = ({
+const IconButton: FC<IconButtonProps> = ({
     icon: IconComponent,
     label,
     shortcut,

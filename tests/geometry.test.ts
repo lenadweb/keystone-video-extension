@@ -1,12 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import {
-    buildMatrix3d,
-    clampPercent,
-    corners,
-    horizontalTilt,
-    verticalTilt,
-} from '../src/shared/keystone';
+import { corners } from 'src/shared/utils/geometry/corners';
+import { buildMatrix3d } from 'src/shared/utils/geometry/matrix';
+import { horizontalTilt, verticalTilt } from 'src/shared/utils/geometry/tilt';
+import { clampPercent } from 'src/shared/utils/percent';
 
 test('projective matrix maps all four video corners to the requested quadrilateral', () => {
     for (const width of [320, 1920, 3840]) {

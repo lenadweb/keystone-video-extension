@@ -1,21 +1,10 @@
-import { CSSProperties, FC } from 'react';
 import cn from 'classnames';
+import type { FC } from 'react';
+import { CLEARANCE, HANDLE } from 'src/popup/constants/slider';
+import type { SliderProps } from 'src/popup/types/slider';
+import { getSliderActiveStyle, getSliderStyle } from 'src/popup/utils/slider';
 
-type Props = {
-    value: number;
-    min: number;
-    max: number;
-    step: number;
-    label: string;
-    valueText: string;
-    onChange: (value: number) => void;
-};
-
-const HANDLE = 'calc(2px + (100% - 4px) * var(--p))';
-
-const CLEARANCE = '8px';
-
-const Slider: FC<Props> = ({
+const Slider: FC<SliderProps> = ({
     value,
     min,
     max,
@@ -24,18 +13,8 @@ const Slider: FC<Props> = ({
     valueText,
     onChange,
 }) => {
-    const ratio = (value - min) / (max - min);
-    const style = { '--p': ratio } as CSSProperties;
-    const activeStyle: CSSProperties =
-        value > 0
-            ? {
-                  left: '50%',
-                  width: `max(0px, calc(${HANDLE} - ${CLEARANCE} - 50%))`,
-              }
-            : {
-                  left: `calc(${HANDLE} + ${CLEARANCE})`,
-                  width: `max(0px, calc(50% - ${HANDLE} - ${CLEARANCE}))`,
-              };
+    const style = getSliderStyle(value, min, max);
+    const activeStyle = getSliderActiveStyle(value);
 
     return (
         <div

@@ -32,6 +32,10 @@ export default [
             ...react.configs.recommended.rules,
             'prettier/prettier': 'error',
             'react/prop-types': 'off',
+            '@typescript-eslint/consistent-type-imports': [
+                'error',
+                { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
+            ],
             'arrow-body-style': ['error', 'as-needed'],
             'react/react-in-jsx-scope': 'off',
             'react/display-name': 'off',

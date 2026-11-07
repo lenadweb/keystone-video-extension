@@ -1,37 +1,10 @@
-import { FC, ReactNode } from 'react';
 import cn from 'classnames';
+import type { FC } from 'react';
+import { ALIGN_CLASSES, PLACEMENT_CLASSES } from 'src/popup/constants/tooltip';
+import { TooltipAlign, TooltipPlacement } from 'src/popup/enums/tooltip';
+import type { TooltipProps } from 'src/popup/types/tooltip';
 
-export enum TooltipPlacement {
-    Top = 'top',
-    Bottom = 'bottom',
-}
-
-export enum TooltipAlign {
-    Start = 'start',
-    Center = 'center',
-    End = 'end',
-}
-
-type Props = {
-    label: string;
-    shortcut?: string;
-    placement?: TooltipPlacement;
-    align?: TooltipAlign;
-    children: ReactNode;
-};
-
-const PLACEMENT_CLASSES: Record<TooltipPlacement, string> = {
-    [TooltipPlacement.Top]: 'bottom-full mb-1.5 translate-y-1',
-    [TooltipPlacement.Bottom]: 'top-full mt-1.5 -translate-y-1',
-};
-
-const ALIGN_CLASSES: Record<TooltipAlign, string> = {
-    [TooltipAlign.Start]: 'left-0',
-    [TooltipAlign.Center]: 'left-1/2 -translate-x-1/2',
-    [TooltipAlign.End]: 'right-0',
-};
-
-const Tooltip: FC<Props> = ({
+const Tooltip: FC<TooltipProps> = ({
     label,
     shortcut,
     placement = TooltipPlacement.Top,

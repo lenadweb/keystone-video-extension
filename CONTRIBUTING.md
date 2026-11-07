@@ -10,6 +10,8 @@ Run `npm run check`, `npm run format:check` and `npm run test:browser` before su
 
 Add a regression test when changing geometry, settings normalization or video lifecycle behavior. Explain assumptions in `docs/ARCHITECTURE.md` and use descriptive names in code. This project intentionally keeps source code free of comments; `npm run lint:comments` enforces this.
 
+Declare types in `types/`, enums in `enums/` and static configuration in `constants/` within the relevant runtime context. Keep `utils/` deterministic and browser-free; put Chrome calls in `services/`, DOM effects in `dom/` and stateful content lifetimes in `controllers/`. Injected frame functions may only import types. `npm run lint:architecture` enforces these boundaries and rejects circular imports. See `docs/ARCHITECTURE.md` for examples.
+
 Keep application UI changes separate from infrastructure changes. The approved popup design is documented in `docs/DESIGN.md`. Regenerate icons with `npm run assets` and external images with `npm run promo` when changing the brand or a visible feature.
 
 Do not introduce remote code, analytics or video uploads. Update the privacy policy and permission explanations when changing page access or data handling. Preserve dependency license notices.

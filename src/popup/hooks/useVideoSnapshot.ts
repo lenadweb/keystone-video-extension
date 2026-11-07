@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { captureVideoSnapshot, VideoSnapshot } from 'src/popup/snapshot';
-
-const REFRESH_MS = 10_000;
-
-const MAX_WIDTH = 440;
-
-const FIRST_FRAME_RETRIES = [400, 1200, 2500];
+import {
+    FIRST_FRAME_RETRIES,
+    SNAPSHOT_MAX_WIDTH,
+    SNAPSHOT_REFRESH_MS,
+} from 'src/popup/constants/preview';
+import { captureVideoSnapshot } from 'src/popup/services/snapshot';
+import type { VideoSnapshot } from 'src/popup/types/snapshot';
+import { getActiveTab } from 'src/shared/services/tabs';
 
 export const useVideoSnapshot = (hasVideo: boolean): VideoSnapshot | null => {
     const [snapshot, setSnapshot] = useState<VideoSnapshot | null>(null);
@@ -22,12 +23,12 @@ export const useVideoSnapshot = (hasVideo: boolean): VideoSnapshot | null => {
             if (isBusy || document.visibilityState !== 'visible') return;
             isBusy = true;
             try {
-                const [tab] = await chrome.tabs.query({
-                    active: true,
-                    currentWindow: true,
-                });
+                const tab = await getActiveTab();
                 if (!tab?.id) return;
-                const next = await captureVideoSnapshot(tab.id, MAX_WIDTH);
+                const next = await captureVideoSnapshot(
+                    tab.id,
+                    SNAPSHOT_MAX_WIDTH
+                );
 
                 if (!disposed && next) {
                     hasFrame = true;
@@ -48,7 +49,7 @@ export const useVideoSnapshot = (hasVideo: boolean): VideoSnapshot | null => {
                 if (!hasFrame) run();
             }, delay)
         );
-        const timer = window.setInterval(run, REFRESH_MS);
+        const timer = window.setInterval(run, SNAPSHOT_REFRESH_MS);
         window.addEventListener('focus', run);
 
         return () => {

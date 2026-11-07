@@ -1,17 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { KeystoneSettingsController } from 'src/popup/types/settings';
 import {
-    KeystoneSettings,
     loadSettings,
-    normalizeSettings,
     onSettingsChange,
     saveSettings,
-} from 'src/shared/settings';
-
-export type KeystoneSettingsController = {
-    settings: KeystoneSettings | null;
-    update: (patch: Partial<KeystoneSettings>) => void;
-    resetCorrection: () => void;
-};
+} from 'src/shared/services/settings';
+import type { KeystoneSettings } from 'src/shared/types/settings';
+import { normalizeSettings } from 'src/shared/utils/settings';
 
 export const useKeystoneSettings = (): KeystoneSettingsController => {
     const [settings, setSettings] = useState<KeystoneSettings | null>(null);

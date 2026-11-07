@@ -1,0 +1,1 @@
+export const FORCE_REAPPLY_DELAYS = [16, 60, 150, 300, 600, 1000, 1600];

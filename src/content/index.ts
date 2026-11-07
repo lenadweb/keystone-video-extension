@@ -1,24 +1,14 @@
-import { startContent } from 'src/content/runtime';
+import { startContent } from 'src/content/controllers/runtime';
+import { getExtensionVersion } from 'src/shared/services/runtime';
 
-type KeystoneContent = {
-    version: string;
-    destroy: () => void;
-};
-
-declare global {
-    interface Window {
-        __keystoneContent?: KeystoneContent;
-    }
-}
-
-const VERSION = chrome.runtime.getManifest().version;
+const version = getExtensionVersion();
 
 const previous = window.__keystoneContent;
-if (import.meta.env.DEV || previous?.version !== VERSION) {
+if (import.meta.env.DEV || previous?.version !== version) {
     try {
         previous?.destroy();
     } catch (error) {
         console.error('Keystone: unable to stop the previous instance', error);
     }
-    window.__keystoneContent = { version: VERSION, destroy: startContent() };
+    window.__keystoneContent = { version: version, destroy: startContent() };
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { loadShortcuts, Shortcuts } from 'src/shared/commands';
+import { loadShortcuts } from 'src/shared/services/shortcuts';
+import type { Shortcuts } from 'src/shared/types/commands';
 
 export const useShortcuts = (): Shortcuts => {
     const [shortcuts, setShortcuts] = useState<Shortcuts>({});

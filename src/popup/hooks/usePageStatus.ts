@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
-import {
-    countVideosInTab,
-    injectContentScript,
-    PageStatus,
-    PageStatusKind,
-} from 'src/popup/pageStatus';
-
-const INITIAL_STATUS: PageStatus = {
-    kind: PageStatusKind.Loading,
-    videoCount: 0,
-};
+import { INITIAL_STATUS, PAGE_RETRY_MS } from 'src/popup/constants/page';
+import { PageStatusKind } from 'src/popup/enums/pageStatus';
+import { countVideosInTab } from 'src/popup/services/page';
+import { injectContentScript } from 'src/popup/services/scripting';
+import type { PageStatus } from 'src/popup/types/page';
+import { getActiveTab } from 'src/shared/services/tabs';
 
 export const usePageStatus = (): PageStatus => {
     const [status, setStatus] = useState<PageStatus>(INITIAL_STATUS);
@@ -23,10 +18,7 @@ export const usePageStatus = (): PageStatus => {
             const request = ++revision;
 
             try {
-                const [tab] = await chrome.tabs.query({
-                    active: true,
-                    currentWindow: true,
-                });
+                const tab = await getActiveTab();
                 if (!tab?.id) throw new Error('No active tab');
 
                 await injectContentScript(tab.id);
@@ -56,7 +48,7 @@ export const usePageStatus = (): PageStatus => {
         };
 
         run();
-        retryTimer = window.setTimeout(run, 700);
+        retryTimer = window.setTimeout(run, PAGE_RETRY_MS);
 
         const handleFocus = () => run();
         window.addEventListener('focus', handleFocus);

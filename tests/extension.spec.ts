@@ -1,7 +1,7 @@
-import { test, expect, chromium } from '@playwright/test';
-import { resolve } from 'node:path';
-import { createServer } from 'node:http';
+import { chromium, expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import { createServer } from 'node:http';
+import { resolve } from 'node:path';
 
 test('installed extension corrects dynamic videos, restores site styles and cleans up on reinjection', async () => {
     const extension = resolve('dist');
@@ -161,6 +161,78 @@ test('installed extension corrects dynamic videos, restores site styles and clea
         await expect(
             popup.getByRole('slider', { name: 'Vertical', exact: true })
         ).toHaveValue('0');
+        await popup.close();
+        await worker.evaluate(async () => {
+            const settings = {
+                enabled: true,
+                vertical: 7,
+                horizontal: 0,
+                step: 0.1,
+            };
+            await chrome.storage.local.set({ keystone: settings });
+            const tab = (await chrome.tabs.query({})).find((item) =>
+                item.url?.startsWith('http://127.0.0.1:')
+            );
+            await chrome.tabs.sendMessage(tab!.id!, {
+                type: 'keystone:osd',
+                settings,
+            });
+        });
+        await expect
+            .poll(() =>
+                page
+                    .locator('video')
+                    .first()
+                    .evaluate((video) => video.style.transform)
+            )
+            .toMatch(/^matrix3d/);
+        await expect(page.locator('#keystone-osd')).toBeAttached();
+        await worker.evaluate(async () => {
+            const tab = (await chrome.tabs.query({})).find((item) =>
+                item.url?.startsWith('http://127.0.0.1:')
+            );
+            await chrome.scripting.executeScript({
+                target: { tabId: tab!.id! },
+                func: () => {
+                    window.__keystoneContent?.destroy();
+                    delete window.__keystoneContent;
+                },
+            });
+        });
+        await expect
+            .poll(() =>
+                page
+                    .locator('video')
+                    .first()
+                    .evaluate((video) => video.style.transform)
+            )
+            .toBe('scale(0.8)');
+        await expect(page.locator('#keystone-osd')).toHaveCount(0);
+        await expect
+            .poll(() =>
+                page
+                    .locator('video')
+                    .nth(1)
+                    .evaluate((video) => video.style.transform)
+            )
+            .toBe('');
+        await worker.evaluate(async () => {
+            const tab = (await chrome.tabs.query({})).find((item) =>
+                item.url?.startsWith('http://127.0.0.1:')
+            );
+            await chrome.scripting.executeScript({
+                target: { tabId: tab!.id! },
+                files: ['content.js'],
+            });
+        });
+        await expect
+            .poll(() =>
+                page
+                    .locator('video')
+                    .first()
+                    .evaluate((video) => video.style.transform)
+            )
+            .toMatch(/^matrix3d/);
         expect(errors).toEqual([]);
     } finally {
         await context.close();

@@ -108,6 +108,8 @@ npm run format:check
 | `scripts/`     | Build validation, packaging, version sync and reproducible media generation |
 | `store/`       | Listing copy, review answers and ready-to-upload images                     |
 
+Types, enums and constants have dedicated folders within their runtime context. Pure calculations live in `utils/`; Chrome calls live in `services/`; content state and DOM effects are split into `controllers/` and `dom/`. `npm run lint:architecture` enforces these boundaries.
+
 Read the [architecture notes](docs/ARCHITECTURE.md), [contribution guide](CONTRIBUTING.md) and [security policy](SECURITY.md).
 
 ## License

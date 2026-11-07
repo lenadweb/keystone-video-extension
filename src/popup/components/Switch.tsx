@@ -1,14 +1,9 @@
-import { FC } from 'react';
 import cn from 'classnames';
 import { Check } from 'lucide-react';
+import type { FC } from 'react';
+import type { SwitchProps } from 'src/popup/types/switch';
 
-type Props = {
-    isOn: boolean;
-    label: string;
-    onToggle: () => void;
-};
-
-const Switch: FC<Props> = ({ isOn, label, onToggle }) => (
+const Switch: FC<SwitchProps> = ({ isOn, label, onToggle }) => (
     <button
         type="button"
         role="switch"
