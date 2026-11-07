@@ -15,7 +15,10 @@ const StepSelector: FC<StepSelectorProps> = ({ value, onChange }) => {
             </legend>
             <div className="flex gap-0.5">
                 {STEP_OPTIONS.map((step) => (
-                    <label key={step} className="relative cursor-pointer">
+                    <label
+                        key={step}
+                        className="relative cursor-pointer focus-within:z-10"
+                    >
                         <input
                             type="radio"
                             name={groupName}
