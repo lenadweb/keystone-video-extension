@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",
+    "build": "npm run typecheck && vite build && vite build --config vite.content.config.ts",
     "lint": "eslint . --max-warnings 0",
     "lint:comments": "node scripts/check-comments.mjs",
     "check": "npm run lint && npm run lint:comments && npm run typecheck && npm test",
